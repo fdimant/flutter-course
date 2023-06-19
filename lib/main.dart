@@ -37,7 +37,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
     List<String> respostas =
         perguntas[_perguntaSelecionada].cast()['respostas'];
 
-    List<Widget> widgetResposta = respostas.map((t) => Resposta(t, _responder));
+    List<Widget> widgetResposta =
+        respostas.map((t) => Resposta(t, _responder)).toList();
 
     // for (var textoResp in listaQuestionario) {
     //   widgetResposta.add(Resposta(textoResp, (_responder)));
