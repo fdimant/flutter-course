@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:projeto_perguntas/questionario.dart';
 import 'resultado.dart';
 import 'questionario.dart';
 
@@ -11,26 +10,50 @@ main() {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _totalPoints = 0;
+
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita ?',
-      'respostas': ['preto', 'verde', 'amarelo', 'azul'],
+      'respostas': [
+        {'texto': 'preto', 'points': 1},
+        {'texto': 'verde', 'points': 2},
+        {'texto': 'amarelo', 'points': 3},
+        {'texto': 'azul', 'points': 4},
+      ],
     },
     {
       'texto': 'Qual é seu animal favorito ?',
-      'respostas': ['cachorro', 'gato', 'cobra', 'coelho'],
+      'respostas': [
+        {'texto': 'cachorro', 'points': 2},
+        {'texto': 'gato', 'points': 4},
+        {'texto': 'cobra', 'points': 5},
+        {'texto': 'coelho', 'points': 6},
+      ],
     },
     {
       'texto': 'Qual é seu time favorito ?',
-      'respostas': ['São Paulo', 'Palmeiras', 'Santos', 'Corinthias'],
+      'respostas': [
+        {'texto': 'São Paulo', 'points': 3},
+        {'texto': 'Palmeiras', 'points': 5},
+        {'texto': 'Santos', 'points': 7},
+        {'texto': 'Corinthias', 'points': 8},
+      ],
     }
   ];
 
-  void _responder() {
+  void _responder(int points) {
     setState(() {
       _perguntaSelecionada++;
+      _totalPoints += points;
     });
-    print(_perguntaSelecionada);
+  }
+
+  void _restartForm() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _totalPoints = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -50,7 +73,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 responder: _responder,
               )
-            : Resultado(),
+            : Resultado(_totalPoints, _restartForm),
       ),
     );
   }
