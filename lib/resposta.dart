@@ -18,9 +18,18 @@ class Resposta extends StatelessWidget {
           backgroundColor: Color.fromARGB(255, 233, 133, 20),
         ),
         onPressed: onPressed,
-        child: Text(
-          texto,
-          textAlign: TextAlign.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(
+              Icons.lock,
+              color: Colors.white,
+            ),
+            Text(
+              texto,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
